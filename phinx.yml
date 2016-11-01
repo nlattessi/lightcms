@@ -17,7 +17,7 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: SlimAuth
+        name: lightcms
         user: homestead
         pass: secret
         port: 3306

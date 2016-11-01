@@ -23,6 +23,7 @@ $app
         $this->post('/auth/password/change', 'PasswordController:postChangePassword');
 
         $this->get('/images', 'ImageController:index')->setName('images.index');
+        $this->get('/images/{id:[0-9]+}', 'ImageController:show')->setName('images.show');
         $this->get('/images/upload', 'ImageController:getUpload')->setName('images.upload');
         $this->post('/images/upload', 'ImageController:postUpload');
 

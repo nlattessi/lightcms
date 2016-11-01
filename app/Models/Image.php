@@ -12,4 +12,22 @@ class Image extends Model
         'name',
         'filename',
     ];
+
+    public static $mimeTypes = [
+        'jpeg' => 'image/jpeg',
+        'jpg' => 'image/jpeg',
+        'png' => 'image/png',
+        'gif' => 'image/gif'
+    ];
+
+    public static function getAllowedExtensions($string = false)
+    {
+        $allowedExtensions = array_keys(self::$mimeTypes);
+
+        if ($string == true) {
+            $allowedExtensions = implode('|', $allowedExtensions);
+        }
+
+        return $allowedExtensions;
+    }
 }
