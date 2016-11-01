@@ -28,6 +28,9 @@ $app
         $this->get('/images/upload', 'ImageController:getUpload')->setName('images.upload');
         $this->post('/images/upload', 'ImageController:postUpload');
 
+        $this->get('/images/{id:[0-9]+}/edit', 'ImageController:getEdit')->setName('images.edit');
+        $this->post('/images/{id:[0-9]+}/edit', 'ImageController:postEdit');
+
         $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
         $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
     })

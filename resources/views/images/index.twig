@@ -21,6 +21,7 @@
                             <td>{{ image.created_at }}</td>
                             <td>{{ image.updated_at }}</td>
                             <td>
+                                <a href="{{ path_for('images.edit', { 'id': image.id }) }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                                 <a href="{{ path_for('images.delete', { 'id': image.id }) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                             </td>
                         </tr>
