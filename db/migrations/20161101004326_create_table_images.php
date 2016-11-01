@@ -29,7 +29,8 @@ class CreateTableImages extends AbstractMigration
     {
         $table = $this->table('images');
         $table
-            ->addColumn('name', 'string')
+            ->addColumn('name', 'string', ['null' => true])
+            ->addColumn('filename', 'string')
             ->addTimestamps()
             ->create();
     }
