@@ -93,6 +93,49 @@ class ImageController extends Controller
         return $response->withRedirect($this->router->pathFor('images.index'));
     }
 
+    public function getDelete($request, $response, $args)
+    {
+        $image = Image::find($args['id']);
+
+        if (! isset($image)) {
+            $this->flash->addMessage('error', 'Image not found.');
+            return $response->withRedirect($this->router->pathFor('images.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        return $this->view->render(
+            $response,
+            'images/delete.twig',
+            [
+                'image' => $image
+            ]
+        );
+    }
+
+    public function postDelete($request, $response, $args)
+    {
+        $image = Image::find($args['id']);
+
+        if (! isset($image)) {
+            $this->flash->addMessage('error', 'Image not found.');
+            return $response->withRedirect($this->router->pathFor('images.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        $filepath = $this->getFilepath($image->filename);
+
+        if (file_exists($filepath)) {
+            unlink($filepath);
+        }
+
+        $image->delete();
+
+        $this->flash->addMessage('info', 'Image deleted.');
+        return $response->withRedirect($this->router->pathFor('images.index'));
+    }
+
     private function getFilename($file)
     {
         $timestamp = (new \DateTime)->getTimeStamp();

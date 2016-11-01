@@ -24,8 +24,11 @@ $app
 
         $this->get('/images', 'ImageController:index')->setName('images.index');
         $this->get('/images/{id:[0-9]+}', 'ImageController:show')->setName('images.show');
+
         $this->get('/images/upload', 'ImageController:getUpload')->setName('images.upload');
         $this->post('/images/upload', 'ImageController:postUpload');
 
+        $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
+        $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
     })
     ->add(new AuthMiddleware($container));
