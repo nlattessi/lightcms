@@ -9,7 +9,7 @@
                     <form action="{{ path_for('images.upload') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                         <div class="form-group{{ errors.name ? ' has-error' : '' }}">
                             <label for="name">Name</label>
-                            <input type="name" name="name" id="name" placeholder="slider01.xxx" class="form-control" value="{{ old.name }}">
+                            <input type="name" name="name" id="name" placeholder="image01" class="form-control" value="{{ old.name }}">
                             {% if errors.name %}
                                 <span class="help-block">{{ errors.name | first }}</span>
                             {% endif %}
@@ -23,6 +23,6 @@
                     </form>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 {% endblock %}

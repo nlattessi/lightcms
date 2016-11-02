@@ -30,4 +30,9 @@ class Image extends Model
 
         return $allowedExtensions;
     }
+
+    public function slides()
+    {
+        return $this->hasMany('App\Models\Slide');
+    }
 }
