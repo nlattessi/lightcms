@@ -1,0 +1,79 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{{ path_for('slides.add') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Add a Slide</a>
+            <br><br>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Caption</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for slide in slides %}
+                        <tr>
+                            <td>{{ slide.order }}</td>
+                            <td>{{ slide.name }}</td>
+                            <td><a href="{{ path_for('images.show', { 'id': slide.image.id }) }}">{{ slide.image.name }}</a></td>
+                            <td>{{ slide.caption }}</td>
+                            <td>{{ slide.created_at }}</td>
+                            <td>{{ slide.updated_at }}</td>
+                            <td>
+                                {#<a href="{{ path_for('images.edit', { 'id': image.id }) }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                <a href="{{ path_for('images.delete', { 'id': image.id }) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <h2>Slide Preview</h2>
+
+            <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    {% for slide in slides %}
+                        <li data-target="#carousel-slider" data-slide-to="{{ slide.order }}"{% if loop.first %} class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    {% for slide in slides %}
+                        <div class="item{% if loop.first %} active{% endif %}">
+                            <img src="{{ path_for('images.show', { 'id': slide.image.id }) }}" alt="...">
+                            <div class="carousel-caption">
+                                <h3>{{ slide.caption }}</h3>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-slider" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-slider" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+            <!-- Carousel -->
+
+        </div>
+    </div>
+{% endblock %}

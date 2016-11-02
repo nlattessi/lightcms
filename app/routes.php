@@ -33,5 +33,17 @@ $app
 
         $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
         $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
+
+        $this->get('/slides', 'SlideController:index')->setName('slides.index');
+        // $this->get('/slider/{id:[0-9]+}', 'SliderController:show')->setName('slider.show');
+
+        $this->get('/slides/add', 'SlideController:getAdd')->setName('slides.add');
+        $this->post('/slides/add', 'SlideController:postAdd');
+
+        // $this->get('/images/{id:[0-9]+}/edit', 'ImageController:getEdit')->setName('images.edit');
+        // $this->post('/images/{id:[0-9]+}/edit', 'ImageController:postEdit');
+
+        // $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
+        // $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
     })
     ->add(new AuthMiddleware($container));

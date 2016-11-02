@@ -87,6 +87,10 @@ $container['ImageController'] = function ($container) {
     return new \App\Controllers\ImageController($container);
 };
 
+$container['SlideController'] = function ($container) {
+    return new \App\Controllers\SlideController($container);
+};
+
 $container['csrf'] = function ($container) {
     return new \Slim\Csrf\Guard;
 };
