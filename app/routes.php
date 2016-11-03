@@ -24,26 +24,19 @@ $app
 
         $this->get('/images', 'ImageController:index')->setName('images.index');
         $this->get('/images/{id:[0-9]+}', 'ImageController:show')->setName('images.show');
-
         $this->get('/images/upload', 'ImageController:getUpload')->setName('images.upload');
         $this->post('/images/upload', 'ImageController:postUpload');
-
         $this->get('/images/{id:[0-9]+}/edit', 'ImageController:getEdit')->setName('images.edit');
         $this->post('/images/{id:[0-9]+}/edit', 'ImageController:postEdit');
-
         $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
         $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
 
         $this->get('/slides', 'SlideController:index')->setName('slides.index');
-        // $this->get('/slider/{id:[0-9]+}', 'SliderController:show')->setName('slider.show');
-
         $this->get('/slides/add', 'SlideController:getAdd')->setName('slides.add');
         $this->post('/slides/add', 'SlideController:postAdd');
-
-        // $this->get('/images/{id:[0-9]+}/edit', 'ImageController:getEdit')->setName('images.edit');
-        // $this->post('/images/{id:[0-9]+}/edit', 'ImageController:postEdit');
-
-        // $this->get('/images/{id:[0-9]+}/delete', 'ImageController:getDelete')->setName('images.delete');
-        // $this->post('/images/{id:[0-9]+}/delete', 'ImageController:postDelete');
+        $this->get('/slides/{id:[0-9]+}/edit', 'SlideController:getEdit')->setName('slides.edit');
+        $this->post('/slides/{id:[0-9]+}/edit', 'SlideController:postEdit');
+        $this->get('/slides/{id:[0-9]+}/delete', 'SlideController:getDelete')->setName('slides.delete');
+        $this->post('/slides/{id:[0-9]+}/delete', 'SlideController:postDelete');
     })
     ->add(new AuthMiddleware($container));

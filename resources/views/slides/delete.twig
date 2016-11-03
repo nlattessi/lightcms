@@ -1,0 +1,21 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Slides</div>
+                <div class="panel-body">
+                    <form method="post" action=""{{ path_for('slides.delete', { 'id': slide.id }) }}" class="alert alert-danger">
+                        <div class="form-group">
+                            <p>Are you sure to delete <b>{{ slide.name }}</b> slide?</p>
+                        </div>
+                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                        <a href="{{ path_for('slides.index') }}" class="btn btn-default">Cancel</a>
+                        {{ csrf.field | raw }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
