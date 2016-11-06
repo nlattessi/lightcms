@@ -39,12 +39,12 @@ $app
         $this->get('/slides/{id:[0-9]+}/delete', 'SlideController:getDelete')->setName('slides.delete');
         $this->post('/slides/{id:[0-9]+}/delete', 'SlideController:postDelete');
 
-        $this->get('marcas', 'MarcaController:index')->setName('marcas.index');
-        $this->get('marcas/add', 'MarcaController:getAdd')->setName('marcas.add');
-        $this->post('marcas/add', 'MarcaController:postAdd');
-        $this->get('marcas/{id:[0-9]+}/edit', 'MarcaController:getEdit')->setName('marcas.edit');
-        $this->post('marcas/{id:[0-9]+}/edit', 'MarcaController:postEdit');
-        $this->get('marcas/{id:[0-9]+}/delete', 'MarcaController:getDelete')->setName('marcas.delete');
-        $this->post('marcas/{id:[0-9]+}/delete', 'MarcaController:postDelete');
+        $this->get('/marcas', 'MarcaController:index')->setName('marcas.index');
+        $this->get('/marcas/add', 'MarcaController:getAdd')->setName('marcas.add');
+        $this->post('/marcas/add', 'MarcaController:postAdd');
+        $this->get('/marcas/{id:[0-9]+}/edit', 'MarcaController:getEdit')->setName('marcas.edit');
+        $this->post('/marcas/{id:[0-9]+}/edit', 'MarcaController:postEdit');
+        $this->get('/marcas/{id:[0-9]+}/delete', 'MarcaController:getDelete')->setName('marcas.delete');
+        $this->post('/marcas/{id:[0-9]+}/delete', 'MarcaController:postDelete');
     })
     ->add(new AuthMiddleware($container));

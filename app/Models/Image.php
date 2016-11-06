@@ -35,4 +35,9 @@ class Image extends Model
     {
         return $this->hasMany('App\Models\Slide');
     }
+
+    public function marcas()
+    {
+        return $this->hasMany('App\Models\Marca');
+    }
 }

@@ -17,7 +17,7 @@
                 <tbody>
                     {% for image in images %}
                         <tr>
-                            <td><a href="{{ path_for('images.show', { 'id': image.id }) }}">{{ image.name }}</a></td>
+                            <td><a target="_blank" href="{{ path_for('images.show', { 'id': image.id }) }}">{{ image.name }}</a></td>
                             <td>{{ image.created_at }}</td>
                             <td>{{ image.updated_at }}</td>
                             <td>
