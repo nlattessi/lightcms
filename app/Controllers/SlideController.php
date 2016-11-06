@@ -50,7 +50,7 @@ class SlideController extends Controller
             'caption' => $request->getParam('caption'),
         ]);
 
-        $this->flash->addMessage('info', 'The slide have been added!');
+        $this->flash->addMessage('info', 'The slide has been added!');
         return $response->withRedirect($this->router->pathFor('slides.index'));
     }
 

@@ -91,6 +91,10 @@ $container['SlideController'] = function ($container) {
     return new \App\Controllers\SlideController($container);
 };
 
+$container['MarcaController'] = function ($container) {
+    return new \App\Controllers\MarcaController($container);
+};
+
 $container['csrf'] = function ($container) {
     return new \Slim\Csrf\Guard;
 };

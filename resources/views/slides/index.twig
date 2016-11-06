@@ -22,7 +22,7 @@
                         <tr>
                             <td>{{ slide.order }}</td>
                             <td>{{ slide.name }}</td>
-                            <td><a href="{{ path_for('images.show', { 'id': slide.image.id }) }}">{{ slide.image.name }}</a></td>
+                            <td><a target="_blank" href="{{ path_for('images.show', { 'id': slide.image.id }) }}">{{ slide.image.name }}</a></td>
                             <td>{{ slide.caption }}</td>
                             <td>{{ slide.created_at }}</td>
                             <td>{{ slide.updated_at }}</td>

@@ -85,9 +85,9 @@ class ImageController extends Controller
                 ]
             );
 
-            $this->flash->addMessage('info', 'Your file has been uploaded!');
+            $this->flash->addMessage('info', 'Your image has been uploaded!');
         } else {
-            $this->flash->addMessage('error', 'The file can not be uploaded...!');
+            $this->flash->addMessage('error', 'The image can not be uploaded...!');
         }
 
         return $response->withRedirect($this->router->pathFor('images.index'));
