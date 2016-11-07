@@ -11,7 +11,6 @@ class Marca extends Model
     protected $fillable = [
         'order',
         'name',
-        'caption',
         'link',
     ];
 

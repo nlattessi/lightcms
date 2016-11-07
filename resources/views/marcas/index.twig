@@ -11,7 +11,6 @@
                         <th>Order</th>
                         <th>Name</th>
                         <th>Image</th>
-                        <th>Caption</th>
                         <th>Link</th>
                         <th>Created</th>
                         <th>Updated</th>
@@ -24,7 +23,6 @@
                             <td>{{ marca.order }}</td>
                             <td>{{ marca.name }}</td>
                             <td><a target="_blank" href="{{ path_for('images.show', { 'id': marca.image.id }) }}">{{ marca.image.name }}</a></td>
-                            <td>{{ marca.caption }}</td>
                             <td><a target="_blank" href="{{ marca.link }}">{{ marca.link }}</a></td>
                             <td>{{ marca.created_at }}</td>
                             <td>{{ marca.updated_at }}</td>
@@ -46,6 +44,15 @@
 
             <h2>Marcas Preview</h2>
 
+            <div class="row">
+                {% for marca in marcas %}
+                    <div class="col-xs-4 col-md-3">
+                        <a target="_blank" href="{{ marca.link }}" class="thumbnail popup" title="{{ marca.name }} Created: {{ marca.created_at }}">
+                            <img src="{{ path_for('images.show.thumb', { 'id': marca.image.id }) }}" alt="{{ image.getName }}">
+                        </a>
+                    </div>
+                {% endfor %}
+                </div>
         </div>
     </div>
 {% endblock %}
