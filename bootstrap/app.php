@@ -21,6 +21,7 @@ $app = new \Slim\App([
         ],
         'files' => [
             'uploadPath' => dirname(__DIR__) . '/files',
+            'thumbUploadPath' => dirname(__DIR__) . '/files/thumbs',
         ],
     ],
 ]);
@@ -47,7 +48,7 @@ $container['flash'] = function ($container) {
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
         'cache' => false,
-        // 'debug' => true,
+        'debug' => true,
     ]);
 
     $view->addExtension(new \Slim\Views\TwigExtension(
@@ -55,7 +56,7 @@ $container['view'] = function ($container) {
         $container->request->getUri()
     ));
 
-    // $view->addExtension(new \Twig_Extension_Debug());
+    $view->addExtension(new \Twig_Extension_Debug());
 
     $view->getEnvironment()->addGlobal('auth', [
         'check' => $container->auth->check(),
@@ -95,15 +96,15 @@ $container['MarcaController'] = function ($container) {
     return new \App\Controllers\MarcaController($container);
 };
 
-$container['csrf'] = function ($container) {
-    return new \Slim\Csrf\Guard;
-};
+// $container['csrf'] = function ($container) {
+//     return new \Slim\Csrf\Guard;
+// };
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
-$app->add(new \App\Middleware\CsrfViewMiddleware($container));
+// $app->add(new \App\Middleware\CsrfViewMiddleware($container));
 
-$app->add($container->csrf);
+// $app->add($container->csrf);
 
 v::with('App\\Validation\\Rules');
 

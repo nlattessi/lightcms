@@ -1,11 +1,23 @@
-{% if flash.getMessage('info') %}
-<div class="alert alert-info">
-    {{ flash.getMessage('info') | first }}
-</div>
-{% endif %}
+{% for type, messages in flash.getMessages %}
 
-{% if flash.getMessage('error') %}
-<div class="alert alert-danger">
-    {{ flash.getMessage('error') | first }}
-</div>
-{% endif %}
+    {% if type == 'info' %}
+
+        {% for message in messages %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+    {% if type == 'error' %}
+
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endfor %}

@@ -1,0 +1,47 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Marcas</div>
+                <div class="panel-body">
+                    <form action="{{ path_for('marcas.edit', { 'id': marca.id }) }}" method="post" autocomplete="off">
+                        <div class="form-group{{ errors.order ? ' has-error' : '' }}">
+                            <label for="order">Order</label>
+                            <input type="number" name="order" id="order" class="form-control" value="{{ marca.order }}">
+                            {% if errors.order %}
+                                <span class="help-block">{{ errors.order.name | first }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{{ errors.name ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder="marca01" class="form-control" value="{{ marca.name }}">
+                            {% if errors.name %}
+                                <span class="help-block">{{ errors.name | first }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{{ errors.link ? ' has-error' : '' }}">
+                            <label for="link">link</label>
+                            <input type="text" name="link" id="link" placeholder="http://www.google.com.ar/" class="form-control" value="{{ marca.link }}">
+                            {% if errors.link %}
+                                <span class="help-block">{{ errors.link | first }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Select Image</label>
+                            <select id="image" name="image" class="form-control">
+                                {% for image in images %}
+                                    <option value="{{ image.id }}"{% if image.id == marca.image.id %}selected{% endif %}>{{ image.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-info">Save</button>
+                        <a href="{{ path_for('marcas.index') }}" class="btn btn-default">Cancel</a>
+                        {{ csrf.field | raw }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

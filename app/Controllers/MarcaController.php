@@ -47,7 +47,6 @@ class MarcaController extends Controller
         $marca = $image->marcas()->create([
             'order' => $request->getParam('order'),
             'name' => $request->getParam('name'),
-            'caption' => $request->getParam('caption'),
             'link' => $request->getParam('link'),
         ]);
 
@@ -57,21 +56,91 @@ class MarcaController extends Controller
 
     public function getEdit($request, $response, $args)
     {
+        $marca = Marca::find($args['id']);
 
+        if (!isset($marca)) {
+            $this->flash->addMessage('error', 'Marca not found');
+            return $response->withRedirect($this->router->pathFor('marcas.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        $images = Image::all();
+
+        return $this->view->render(
+            $response,
+            'marcas/edit.twig',
+            [
+                'marca' => $marca,
+                'images' => $images,
+            ]
+        );
     }
 
     public function postEdit($request, $response, $args)
     {
+        $marca = Marca::find($args['id']);
 
+        if (!isset($marca)) {
+            $this->flash->addMessage('error', 'Marca not found');
+            return $response->withRedirect($this->router->pathFor('marcas.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        $image = Image::find($request->getParam('image'));
+
+        if (!isset($image)) {
+            $this->flash->addMessage('error', 'Image not found');
+            return $response->withRedirect($this->router->pathFor('slides.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        $marca->image()->associate($image);
+        $marca->order = $request->getParam('order');
+        $marca->name = $request->getParam('name');
+        $marca->link = $request->getParam('link');
+        $marca->save();
+
+        $this->flash->addMessage('info', 'Marca updated');
+        return $response->withRedirect($this->router->pathFor('marcas.index'));
     }
 
     public function getDelete($request, $response, $args)
     {
+        $marca = Marca::find($args['id']);
 
+        if (!isset($marca)) {
+            $this->flash->addMessage('error', 'Marca not found');
+            return $response->withRedirect($this->router->pathFor('marcas.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        return $this->view->render(
+            $response,
+            'marcas/delete.twig',
+            [
+                'marca' => $marca
+            ]
+        );
     }
 
     public function postDelete($request, $response, $args)
     {
+        $marca = Marca::find($args['id']);
 
+        if (!isset($marca)) {
+            $this->flash->addMessage('error', 'Marca not found');
+            return $response->withRedirect($this->router->pathFor('marcas.index'));
+            // $handler = $this->notFoundHandler;
+            // return $handler($request, $response);
+        }
+
+        $marca->delete();
+
+        $this->flash->addMessage('info', 'Marca deleted');
+        return $response->withRedirect($this->router->pathFor('marcas.index'));
     }
 }
